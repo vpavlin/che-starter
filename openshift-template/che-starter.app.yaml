@@ -21,7 +21,13 @@ objects:
         timeoutSeconds: 600
         maxUnavailable: 25%
         maxSurge: 25%
-      resources: {}
+      resources:
+        requests:
+          cpu: 50m
+          memory: 1Gi
+        limits:
+          cpu: 500m
+          memory: 2Gi
     triggers:
       - type: ConfigChange
     replicas: 1
@@ -72,7 +78,6 @@ objects:
               - containerPort: 10000
                 protocol: TCP
             terminationMessagePath: /dev/termination-log
-            resources: {}
             volumeMounts:
               - name: che-starter-volume-1
                 mountPath: /tmp
